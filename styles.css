@@ -3,9 +3,10 @@ body {
 }
 
 h1 {
-    font-family: Monoton;
+    font-family: Kumar One;
     font-size: 70px;
     margin: 0.2em;
+    color: #581D86;
 }
 
 h2 {
@@ -35,4 +36,14 @@ td {
 
 input[type=number] {
     width: 6em;
+}
+
+#input_height {
+    margin: 5px 5px;
+    font-weight: 600px;
+}
+
+#input_width {
+    margin: 5px 5px;
+    font-weight: 600px;
 }
