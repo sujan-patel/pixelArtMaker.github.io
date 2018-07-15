@@ -1,24 +1,36 @@
-function makeGrid() {
-    var height = document.getElementById('input_height').value;
-    var width = document.getElementById('input_width').value;
-    var table = document.getElementById('pixel_canvas');
-	// Table grid creation code :
-    table.innerHTML = '';
-    var tbody = document.createElement('tbody');
-    for (var i = 0; i < height; i++) {
-        var tr = document.createElement('tr');
-        for (var j = 0; j < width; j++) {
-            var td = document.createElement('td');
-            td.appendChild(document.createTextNode(''));
-            tr.appendChild(td);
-        }
-        tbody.appendChild(tr);
-    }
-    table.appendChild(tbody);
-}
+//variables to get canvas element,height,width
+const c = document.getElementById('pixel_canvas');
+let temph = $("#input_height");
+let tempw = $("#input_width");
 
-//jQuery to change color of pixel when clicked.
-$('body').on('click', 'td', function() {
-	var color = document.getElementById('colorPicker').value;
-    $(this).css('background-color', color);
+//An event listener that comes into action when Submit button is clicked .
+$('#input_submit').click(function(e) {
+    e.preventDefault();
+    makeGrid();
 });
+
+let color = $("#colorPicker");
+
+//To make the grid pattern makegrid is called whenever button is clicked.
+function makeGrid() {
+
+    c.innerHTML = '';
+    let height = temph.val();
+    let width = tempw.val();
+
+    //A function which fills color in the cell that was clicked and changes the color.
+    let addEvent = function(cell) {
+        cell.addEventListener('click', function() {
+            cell.style.backgroundColor = color.val();
+        });
+    }
+
+    //An event listener such that whenever any cell is clicked it calls addEvent function and changes it's color.
+    for (let i = 0; i < height; i++) {
+        let row = c.insertRow(i);
+        for (let j = 0; j < width; j++) {
+            let cell = row.insertCell(j);
+            cell.addEventListener('click', addEvent(cell));
+        }
+    }
+}
